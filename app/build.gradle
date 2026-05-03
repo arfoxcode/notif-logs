@@ -1,0 +1,39 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.navre.notiflogs'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.navre.notiflogs'
+        minSdk 26
+        targetSdk 34
+        versionCode 40
+        versionName '2.4.0-filter-logs'
+    }
+
+    // Jangan pakai jvmToolchain(17) di JStudio/Android ARM.
+    // Toolchain akan mencari instalasi JDK 17 terpisah, padahal JStudio biasanya hanya punya JDK 21.
+    // Jadi kita pakai JDK yang tersedia, tetapi output bytecode tetap dipaksa Java 17.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+// Paksa semua task Kotlin agar tidak kembali default ke JVM 21.
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = '17'
+        freeCompilerArgs += ['-Xjvm-default=all']
+    }
+}

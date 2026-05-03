@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Android Studio / JStudio
+.idea/
+*.iml
+local.properties
+
+# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# APK / Bundle output
+*.apk
+*.aab
+
+# Keystore / secrets
+*.jks
+*.keystore
+keystore.properties
+secrets.properties
+google-services.json
+
+# OS junk
+.DS_Store
+Thumbs.db

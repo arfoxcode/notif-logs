@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Notif Logs</string>
+    <string name="watchdog_channel_name">Penjaga Notif Logs</string>
+    <string name="watchdog_channel_desc">Menjaga pencatatan notifikasi tetap aktif.</string>
+</resources>

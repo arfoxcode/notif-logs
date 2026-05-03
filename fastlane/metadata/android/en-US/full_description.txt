@@ -1,0 +1,20 @@
+Notif Logs is a local Android notification history manager by Arif.
+
+It records Android notifications using the Notification Listener Service and stores the history locally on the user's device.
+
+Features:
+- Local notification history
+- Search notification records
+- Group notifications by app name and notification title
+- Whitelist and blacklist apps
+- Dark mode support
+- Clear notification history management
+- No ads
+- No tracking
+- No external server
+
+Privacy:
+Notif Logs stores notification data locally on the device. The app does not upload, share, track, or send notification data to any third-party service.
+
+Source code:
+https://github.com/arfoxcode/notiflogs

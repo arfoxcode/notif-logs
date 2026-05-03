@@ -1,0 +1,20 @@
+Notif Logs adalah aplikasi Android buatan Arif untuk mencatat dan mengelola riwayat notifikasi secara lokal.
+
+Aplikasi ini menggunakan Notification Listener Service Android dan menyimpan riwayat notifikasi di perangkat pengguna.
+
+Fitur:
+- Riwayat notifikasi lokal
+- Pencarian catatan notifikasi
+- Pengelompokan berdasarkan nama aplikasi dan judul notifikasi
+- Whitelist dan blacklist aplikasi
+- Dukungan mode gelap
+- Pengelolaan riwayat notifikasi
+- Tanpa iklan
+- Tanpa tracking
+- Tanpa server eksternal
+
+Privasi:
+Notif Logs menyimpan data notifikasi secara lokal di perangkat. Aplikasi ini tidak mengunggah, membagikan, melacak, atau mengirim data notifikasi ke layanan pihak ketiga.
+
+Kode sumber:
+https://github.com/arfoxcode/notiflogs

@@ -1,0 +1,8 @@
+Rilis publik awal.
+
+- Menambahkan riwayat notifikasi lokal
+- Menambahkan pencarian catatan notifikasi
+- Menambahkan filter berdasarkan aplikasi
+- Menambahkan dukungan whitelist dan blacklist
+- Menambahkan mode gelap
+- Menggunakan pendekatan privasi lokal tanpa server eksternal

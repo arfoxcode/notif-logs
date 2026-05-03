@@ -1,0 +1,8 @@
+Initial public release.
+
+- Added local notification history
+- Added searchable notification records
+- Added app-based filtering
+- Added whitelist and blacklist support
+- Added dark mode
+- Added local-only privacy approach

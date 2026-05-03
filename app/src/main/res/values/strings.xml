@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Notif Logs</string>
+    <string name="watchdog_channel_name">Notif Logs Guard</string>
+    <string name="watchdog_channel_desc">Keeps notification logging active.</string>
+</resources>
