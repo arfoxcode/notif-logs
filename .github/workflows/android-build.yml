@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout source
@@ -34,8 +34,20 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug
 
+      - name: Rename APK
+        run: |
+          mkdir -p release
+          cp app/build/outputs/apk/debug/*.apk release/notif-logs-debug.apk
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: notif-logs-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: release/notif-logs-debug.apk
+
+      - name: Upload APK to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" release/notif-logs-debug.apk --clobber
