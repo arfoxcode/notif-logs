@@ -13,8 +13,8 @@ android {
         applicationId 'com.navre.notiflogs'
         minSdk 26
         targetSdk 34
-        versionCode 40
-        versionName '2.4.0-filter-logs'
+        versionCode 41
+        versionName '2.5'
     }
 
     // Jangan pakai jvmToolchain(17) di JStudio/Android ARM.
