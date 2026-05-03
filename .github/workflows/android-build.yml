@@ -3,11 +3,13 @@ name: Android Release Build
 on:
   release:
     types:
-      - created
+      - published
   workflow_dispatch:
-  push:
-    branches:
-      - main
+    inputs:
+      tag:
+        description: "Release tag to upload APK to, example: v2.4.0"
+        required: true
+        type: string
 
 jobs:
   build:
@@ -34,7 +36,7 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug
 
-      - name: Rename APK
+      - name: Prepare APK
         run: |
           mkdir -p release
           cp app/build/outputs/apk/debug/*.apk release/notif-logs-debug.apk
@@ -46,8 +48,16 @@ jobs:
           path: release/notif-logs-debug.apk
 
       - name: Upload APK to GitHub Release
-        if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
         run: |
-          gh release upload "${{ github.event.release.tag_name }}" release/notif-logs-debug.apk --clobber
+          TAG="${RELEASE_TAG:-$INPUT_TAG}"
+          if [ -z "$TAG" ]; then
+            echo "No release tag was provided. Use workflow_dispatch with a tag like v2.4.0."
+            exit 1
+          fi
+
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Notif Logs $TAG" --notes "APK build from GitHub Actions."
+          gh release upload "$TAG" release/notif-logs-debug.apk --clobber
