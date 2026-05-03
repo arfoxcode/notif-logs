@@ -13,6 +13,7 @@ import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
+import android.widget.ImageView
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -82,15 +83,7 @@ class MainActivity : Activity() {
         frame.addView(rootScroll, FrameLayout.LayoutParams(-1, -1))
 
         root.addView(
-            titleRow(
-                title = "Notif Logs",
-                infoTitle = L.t("Tentang halaman utama", "About Home"),
-                infoMessage = L.t(
-                    "Halaman ini untuk melihat status listener, jumlah data, aksi cepat, dan daftar thread notifikasi.",
-                    "This page shows listener status, data totals, quick actions, and notification threads."
-                ),
-                textSize = 30f
-            ),
+            appHeaderCard(),
             LinearLayout.LayoutParams(-1, -2).apply { bottomMargin = dp(14) }
         )
 
@@ -202,6 +195,50 @@ class MainActivity : Activity() {
         })
 
         setContentView(frame)
+    }
+
+    private fun appHeaderCard(): LinearLayout {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(14), dp(14), dp(14), dp(14))
+            background = roundedBg(AppColors.surface, dp(22).toFloat(), AppColors.goldSoft, dp(1))
+            elevation = dp(2).toFloat()
+
+            addView(ImageView(context).apply {
+                setImageResource(android.R.drawable.ic_dialog_info)
+                setColorFilter(AppColors.goldText)
+                background = roundedBg(AppColors.chipGold, dp(14).toFloat(), AppColors.goldSoft, dp(1))
+                setPadding(dp(10), dp(10), dp(10), dp(10))
+            }, LinearLayout.LayoutParams(dp(52), dp(52)).apply { rightMargin = dp(12) })
+
+            addView(LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+                addView(TextView(context).apply {
+                    text = "Notif Logs"
+                    textSize = 28f
+                    setTextColor(AppColors.textPrimary)
+                    bold()
+                })
+                addView(TextView(context).apply {
+                    text = L.t("Forwarder notifikasi yang rapi, cepat, dan mudah dibaca.", "Human-first, fast, and readable notification forwarder.")
+                    textSize = 13f
+                    setTextColor(AppColors.textSecondary)
+                    setPadding(0, dp(4), 0, 0)
+                })
+            }, LinearLayout.LayoutParams(0, -2, 1f))
+
+            addView(chip(
+                L.t("About", "About"),
+                AppColors.chipGold,
+                AppColors.goldText
+            ).apply {
+                setPadding(dp(12), dp(7), dp(12), dp(7))
+                setOnClickListener {
+                    startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+                }
+            })
+        }
     }
 
     private fun floatingMenu(): LinearLayout {
