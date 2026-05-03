@@ -1,0 +1,2 @@
+# notif-logs
+Notification Manager
